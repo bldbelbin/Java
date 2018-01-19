@@ -1,0 +1,86 @@
+import java.util.*;
+
+public class assignmentMain {
+    
+    public static void main(String[] args) {
+        
+        int choice;
+        
+        choice = menu();
+        
+        if(choice == 1) {
+            
+           fraction();
+           
+        } else if (choice ==2) {
+            
+            grades();
+            
+        } else if (choice == 3) {
+            
+            System.out.println("Quit");
+            
+        } // end of else if  
+
+    } // end of main   
+    
+    public static int menu(){
+        
+        Scanner input = new Scanner(System.in);
+        
+        int choice;
+        
+        System.out.println("1. Fraction Calculator");
+        System.out.println("2. Grading Schema");
+        System.out.println("3. Quit");
+        System.out.print("Please enter a choice: ");
+        
+        choice = input.nextInt();
+        
+        while(choice <1 || choice>3){
+            
+            System.out.println("Please enter a valid option: ");
+            choice = input.nextInt();
+        }
+        
+        return choice;
+        } // end of menu
+    
+    public static void fraction () {
+        
+        int num, den, num2, den2;
+
+        Scanner s = new Scanner(System.in);
+        System.out.println("Please enter a fraction: ");
+        String fr = s.nextLine();
+        String[] frac = fr.split("/");
+        num = Integer.parseInt(frac[0]); // numerator of the first fraction
+        den = Integer.parseInt(frac[1]); // denominator of the first fraction
+   
+        
+        // second fraction 
+        System.out.println("Please enter another fraction: ");
+        String fr2 = s.nextLine();
+        String[] frac2 = fr2.split("/");
+        num2 = Integer.parseInt(frac2[3]); // numerator of the second fraction
+        den2 = Integer.parseInt(frac2[4]); // denominator of the second fraction
+       
+        Fraction f1; // declaring the first fraction
+        
+        f1 = new Fraction(); //instantiate the first fraction
+        f1.num = num;
+        f1.den = den;
+        
+        Fraction f2;
+        
+        f2 = new Fraction();
+        f2.num = num2;
+        f2.den = den2;
+   
+
+    } //end of fraction 
+
+    public static void grades(){
+        
+    } // end of grades
+} // end of assignment
