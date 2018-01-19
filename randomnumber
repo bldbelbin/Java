@@ -1,0 +1,28 @@
+import java.security.SecureRandom;
+
+/**
+ *
+ * @author Jarvis
+ */
+public class randomnumber { //opening bracket
+    
+    public static void randomnumber() { 
+        
+        SecureRandom random = new SecureRandom(); //random number generator
+        
+        int number;
+        
+        number = random.nextInt(426) -212;
+        
+        System.out.println("Random number between 426 and -212 is: " +number);
+        
+    } //end of method randomnumber
+    
+
+    public static void main(String[] args) {
+        
+        randomnumber();
+        
+    } //end of main
+    
+} // end
