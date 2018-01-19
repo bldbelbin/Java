@@ -1,0 +1,72 @@
+package Assignment2;
+
+/**
+ *
+ * @author Kal-El
+ */
+public class Fraction {
+    
+    int num; //numerator
+    int den; // denominator   
+    int results;
+    
+    public static int lowestTerms(int a, int b) {
+     
+        if (b == 0) {
+            return a;
+            
+        } 
+        
+        return lowestTerms(b, a%b);
+    
+        } //end of lowestTerms
+    
+    public void add (Fraction f1, Fraction f2) {
+    
+        den = f1.num*f2.den;
+        num = (f1.num*f2.den) + (f2.num*f1.den);
+        int l = lowestTerms(num, den);
+        num = num/l;
+        den = den/l;
+
+        } //end of add
+
+    public void subtract (Fraction f1, Fraction f2) {
+   
+        den = f1.den*f2.den;
+        num = (f1.num*f2.den) - (f2.num*f1.den);
+        int l = lowestTerms(num, den);
+        num = num/l;
+        den = den/l;
+        
+        } //end of subtract
+    
+    public void multiply (Fraction f1, Fraction f2) {
+    
+        den = f1.den*f2.den;
+        num = f1.num*f2.num;
+        int l = lowestTerms(num, den);
+        num = num/l;
+        den = den/l;
+    
+        } // end of multiply
+
+    public void divide (Fraction f1, Fraction f2) {
+    
+        den = f1.den*f2.num;
+        num = f2.den*f1.num;
+        int l = lowestTerms(num, den);
+        num = num/l;
+        den = den/l;
+    
+        } // end of divide
+    
+  
+    public void printFraction(){
+        
+        System.out.print(num+"/"+den+ "             ");
+        
+    }
+
+
+} // end of class
