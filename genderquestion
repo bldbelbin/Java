@@ -1,0 +1,58 @@
+package gender;
+
+import java.util.Scanner;
+
+/**
+ *
+ * @author Jarvis
+ */
+public class Gender {
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        
+        int age;
+        int g;
+        int ms;
+        
+        Scanner input = new Scanner(System.in);
+        
+        System.out.println("How old are you?");
+        
+        age = input.nextInt();
+        
+        System.out.println("Please answer with 1 for male and with 2 for female");
+        
+        System.out.println("What is your gender?");
+        
+        g = input.nextInt();
+        
+        System.out.println("Please answer with 3 for yes and 4 for no");
+        
+        System.out.println("Are you married?");
+        
+        ms = input.nextInt();
+        
+        if((age>=20&&age<=40)&&(g==1)) {
+            
+            System.out.println("The employee may work anywhere");
+            
+        } else if ((age>=40&&age<=60)&&(g==1)) {
+       
+           System.out.println("The employee will work in urban areas only");
+        
+        } else if ((age>=20&&age<=40)&&(g==2)) {
+             
+             System.out.println("Will work only in urban areas");
+        }
+     
+        if (age<20) {
+            
+            System.out.println("ERROR!");
+            
+        }
+        }
+        
+}
