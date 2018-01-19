@@ -1,0 +1,49 @@
+import java.security.SecureRandom;
+
+/**
+ *
+ * @author Kal-El
+ */
+public class DiceSum {
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+       
+        SecureRandom random = new SecureRandom();
+
+        int dice1, dice2;
+        int [] frequency = new int [13];
+        int [] rolls = new int [13];
+        int sum;
+        double percentage;
+
+        for (int i = 0; i <= 36000; i++) { // runs 36000 times
+            
+
+            dice1 = random.nextInt(6)+1; // generates a random number
+            dice2 = random.nextInt(6)+1;
+            
+            frequency[dice1+dice2]++;
+        
+            sum = dice1 + dice2; // creates the sum of dice 1 and dice 2
+   
+        
+        }
+        
+        System.out.printf("Sum\tFrequency\tPercentage\n");
+       
+
+        for (int i = 2; i < frequency.length; i++) {
+            
+            percentage = (((frequency[i]) * 100.0) / 36000.0); 
+
+            System.out.printf("%d\t%d\t\t%f\n",i,frequency[i], percentage);
+
+        } // end of for loop
+      
+
+    } // end of main
+    
+} // end of class
