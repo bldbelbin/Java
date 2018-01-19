@@ -1,0 +1,42 @@
+public class hexoctbi {
+    
+    
+    public static void main(String[] args) { 
+        
+        
+            System.out.printf ( "Decimal\t\tHex\t\tOctal\t\tBinary" );
+        
+        for (int d = 1; d <= 255; d++) {
+           
+          
+          System.out.printf("\n" + d + "\t\t" + Integer.toHexString(d) + "\t\t" + Integer.toOctalString(d) + "\t\t" + Integer.toBinaryString(d) + "\n");
+
+        } 
+
+    } //end of main
+    
+    public static String binary(int d) {
+       
+       Integer.toBinaryString(d);
+       
+        return null;
+  
+    } // end of binary method
+    
+    public static String octal(int d) {
+        
+        Integer.toOctalString(d);
+        
+        return null;
+       
+    } // end of octal method
+    
+    public static String hex (int d) {
+        
+        Integer.toHexString(d);
+        
+        return null;
+        
+    } // end of hex method
+    
+} //end 
