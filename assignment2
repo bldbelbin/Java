@@ -1,0 +1,214 @@
+import java.util.*;
+import java.io.*;
+
+
+public class assignmentMain {
+    
+    static int marks[][];
+    static String students[];
+    static int avg_score[];
+    static char grade[];
+    static int overall_avg;
+    static int test_avg[];
+    
+    public static void main(String[] args) {
+        
+        Scanner input = new Scanner(System.in);
+        
+        int choice=0;
+        
+        while(choice !=3) {
+            
+        System.out.print("1.Fraction Calculator \n2.Grade Schema \n3.Quit\n");
+        System.out.print("Please enter a choice: ");
+        choice = input.nextInt();
+      
+        if(choice == 1) {
+            
+           fraction();
+           
+        } else if (choice == 2) {
+            
+            grades();
+            
+        } else if (choice == 3) {
+            
+            System.out.println("Quit");
+        
+        }else {
+            System.out.print("Enter a valid option: ");
+            
+        } // end of else if  
+          
+        }
+    } // end of main   
+   
+    
+    public static void fraction () {
+        
+        int num, den, num2, den2;
+ 
+        Scanner s = new Scanner(System.in);
+        System.out.println("Please enter a fraction: ");
+        String fr = s.nextLine();
+        String[] frac = fr.split("/"); // splits the fraction
+        num = Integer.parseInt(frac[0]); // numerator of the first fraction
+        den = Integer.parseInt(frac[1]); // denominator of the first fraction
+   
+        
+        
+        // second fraction 
+        System.out.println("Please enter another fraction: ");
+        String fr2 = s.nextLine();
+        String[] frac2 = fr2.split("/");
+        num2 = Integer.parseInt(frac2[0]); // numerator of the second fraction
+        den2 = Integer.parseInt(frac2[1]); // denominator of the second fraction
+       
+        System.out.printf("Fraction 1\t Fraction 2\tAddition\tSubtraction\tMuliplication\tDivision\n");
+        System.out.printf(fr+"\t            "+fr2+"             "); // printing input fractions
+        
+        Fraction f1; // declaring the first fraction
+        
+        f1 = new Fraction(); //initializing the first fraction
+        f1.num = num; // numerator 
+        f1.den = den; //denomintor
+        
+        Fraction f2;
+        
+        f2 = new Fraction(); // initializing the second fraction
+        f2.num = num2;
+        f2.den = den2;
+
+        Fraction result = new Fraction();
+        result.add(f1, f2); // addition 
+        result.printFraction(); // prints the fractions
+        result.subtract(f1, f2); // subtraction
+        result.printFraction();
+        result.multiply(f1, f2); // multiplication
+        result.printFraction();
+        result.divide(f1, f2); // division
+        result.printFraction();
+        
+        
+        
+    } //end of fraction 
+
+    public static void grades(){
+
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter filename : "); // enter in student.txt 
+        String filename = sc.next(); // takes the file name
+        try
+        {
+            sc = new Scanner(new File(filename));
+            int student_no = sc.nextInt();
+            int test_no = sc.nextInt();
+            marks = new int[student_no][test_no];
+            students = new String[student_no];
+            avg_score = new int[student_no];
+            grade = new char[student_no];
+            test_avg = new int[test_no];
+            
+            for(int i=0;i<student_no;i++)
+            {
+                students[i]=sc.next();
+                for(int j=0;j<test_no;j++)
+                    marks[i][j]=sc.nextInt();
+            }
+        }
+        catch(Exception e)
+        {
+            System.out.println("error found "+e);
+        }
+        
+        calculateTestAverage(); // prints the vertical average horizontally
+
+        for(int i=0;i<marks.length;i++)
+            grade[i]=calculateGrade(avg_score[i]);
+
+        calculateAverage(); // prints the horizontal average vertically
+        printGrades(); //prints the grades
+                       
+    }
+    
+    public static void calculateAverage ()
+    {
+        int sum;
+        for(int j=0;j<marks[0].length;j++)
+        {
+            sum=0;
+            for(int i=0;i<marks.length;i++)
+            {
+                sum+=marks[i][j];
+            }
+            test_avg[j] = (sum)/marks.length; // divides the sum by the marks length
+        }
+        sum=0;
+        for(int i=0;i<marks.length;i++)
+        {
+            sum+=avg_score[i];
+        }
+        overall_avg = (sum)/marks.length;
+    } // end of calculateAverage()
+    
+    public static void calculateTestAverage ()
+    {
+        for (int i=0; i < marks.length; i++) 
+        {
+            int sum = 0;
+            for(int j=0;j<marks[i].length;j++)
+            {
+                sum+=marks[i][j];
+            }
+            avg_score[i]=(sum)/marks[i].length;
+        } 
+    } // end of calculateTestAverage method
+    
+    public static char calculateGrade(int grade) {
+    
+        // prints the letter grade equivilent 
+        
+        if (grade >=0 && grade <50) { 
+            return 'F';
+        
+        } else if (grade >= 50 && grade < 60){
+            return 'D';
+            
+        } else if (grade >=60 && grade < 70) {
+            return 'C';
+            
+        } else if (grade >=70 && grade < 80) {
+            return 'B';
+            
+        } else if (grade >=80 && grade <= 100) 
+            return 'A';
+      return (char) grade; // returns a character 
+
+    } // end of calculateGrade method
+    
+    public static void printGrades () 
+    {
+        int i,j;
+        System.out.print("name:\t\t");
+        for(i=0;i<marks[0].length;i++)
+            System.out.print("test"+i+"\t");
+        System.out.println("Avg\tgrade\t");
+        
+        for(i=0;i<marks.length;i++)
+        {
+            System.out.print(students[i]+"\t\t");
+            for(j=0;j<marks[i].length;j++)
+            {
+                System.out.print(marks[i][j]+"\t");
+            }
+            System.out.println(avg_score[i]+"\t"+grade[i]);
+        }
+        System.out.print("test AVG:\t");
+        for(j=0;j<marks[0].length;j++)
+        {
+            System.out.print(test_avg[j]+"\t");
+        }
+        System.out.println(overall_avg);
+    } // end of method printGrades
+
+} // end of grades
