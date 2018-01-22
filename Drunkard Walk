@@ -1,0 +1,49 @@
+import java.util.Scanner; 
+import java.lang.*;
+
+public class DrunkardWalk{
+	
+	
+	public static Scanner input = new Scanner(System.in); // initiate scanner to be used class wide 
+	public static int n,x,y = 0; //initiate class wide variables 
+	
+	public static void main (String[] args){
+		
+		while(n!=-1){//Big while loop to say if user does -1 steps it ends program 
+			getInput();//call the method to get user input 
+			System.out.println("The drunkard starts at positon (0,0)."+
+			"\nHe attempts to take a step.. "); //aesthetic output 
+			for (int i = 0; i<n; i++){ //run a loop userInput n times 
+				takeStep();//take a step then say where we are 
+				System.out.println("Step taken successfully! " +
+				"Drunkard is now at positon ("+x+","+y+")");
+			}
+			//Do some math and tell the user where we ended up 
+			System.out.println("The drunkard walked for "+n+" steps."+
+			"\nThe lamp was at position (0,0) where he started."+
+			"\nHe is now at position ("+x+", "+y+") ");
+			System.out.println("The drunkard is now a distance of " + 
+			Math.sqrt((x*x)+(y*y))+" units from the lamp post.");
+		
+		}
+	}
+	public static void getInput(){
+		System.out.print("How many steps will the drunkard take: ");
+		n = input.nextInt();
+	}
+	public static void takeStep(){
+		int direction = (int)(Math.random()*4+1); //generate a number between 0 and 3 then add 1 to make it a number 1 - 4 
+		switch(direction){//based on the value of direction do something for each case (it's a reallllly fancy if/else statement to do different things based on the value of one variable )
+			case 1: y +=1;//north
+					break;
+			case 2: x +=1;//east
+					break;
+			case 3: y -=1;//south
+					break;
+			case 4: x -=1;//west
+					break;
+			
+		}
+		
+	}
+}
